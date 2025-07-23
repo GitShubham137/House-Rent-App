@@ -1,1 +1,1 @@
-# HOUSE RENT APP using mern
+# HOUSE RENT APP
