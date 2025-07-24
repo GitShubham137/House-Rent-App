@@ -153,7 +153,7 @@ const AllPropertiesCards = ({ loggedIn }) => {
                                                       <Carousel.Item key={idx}>
                                                          <img
                                                             src={`http://localhost:8001${image.path}`}
-                                                            alt={`Image ${idx + 1}`}
+                                                            alt={`Slide ${idx + 1}`}
                                                             className="d-block w-100"
                                                          />
                                                       </Carousel.Item>

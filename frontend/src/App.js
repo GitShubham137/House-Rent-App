@@ -8,7 +8,7 @@ import ForgotPassword from "./modules/common/ForgotPassword";
 import { createContext, useEffect, useState } from "react";
 import AdminHome from "./modules/admin/AdminHome";
 import OwnerHome from "./modules/user/Owner/OwnerHome";
-import RenterHome from "./modules/user/Owner/RenterHome";
+import RenterHome from "./modules/user/renter/RenterHome";
 
 export const UserContext = createContext();
 
