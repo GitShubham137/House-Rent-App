@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const bookingModel = mongoose.Schema(
   {
-    propertId: {
+    propertyId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "propertyschema",
     },

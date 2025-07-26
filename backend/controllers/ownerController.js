@@ -13,7 +13,7 @@ const addPropertyController = async (req, res) => {
       }));
     }
 
-    const user = await userSchema.findById({ _id: req.body.userId });
+    const user = await userSchema.findById({ _id: req.userId });
 
     const newPropertyData = new propertySchema({
       ...req.body,
@@ -36,7 +36,7 @@ const addPropertyController = async (req, res) => {
 
 ///////////all properties of owner/////////
 const getAllOwnerPropertiesController = async (req, res) => {
-  const { userId } = req.body;
+  const userId = req.userId;
   try {
     const getAllProperties = await propertySchema.find();
     const updatedProperties = getAllProperties.filter(
@@ -83,7 +83,7 @@ const updatePropertyController = async (req, res) => {
       { _id: propertyid },
       {
         ...req.body,
-        ownerId: req.body.userId,
+        ownerId: req.userId,
       },
       { new: true }
     );
@@ -102,7 +102,7 @@ const updatePropertyController = async (req, res) => {
 };
 
 const getAllBookingsController = async (req, res) => {
-  const { userId } = req.body;
+  const userId = req.userId;
   try {
     const getAllBookings = await bookingSchema.find();
     const updatedBookings = getAllBookings.filter(

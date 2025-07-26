@@ -29,9 +29,9 @@ const registerController = async (req, res) => {
     }
 
     ///////////aur you can do this////////
-    //     if (req.body.type === "Owner") {
-    //       newUser.set("granted", "pending", { strict: false });
-    //     }
+    //     if (req.body.type === "Owner") {
+    //       newUser.set("granted", "pending", { strict: false });
+    //     }
     //////////////////// for this, then you need to remove strict keyword from schema//////////////////////
 
     return res.status(201).send({ message: "Register Success", success: true });
@@ -153,7 +153,8 @@ const getAllPropertiesController = async (req, res) => {
 ///////////booking handle///////////////
 const bookingHandleController = async (req, res) => {
   const { propertyid } = req.params;
-  const { userDetails, status, userId, ownerId } = req.body;
+  const { userDetails, status, ownerId } = req.body;
+  const userId = req.userId;
 
   try {
     const booking = new bookingSchema({
@@ -180,12 +181,11 @@ const bookingHandleController = async (req, res) => {
 
 /////get all bookings for sing tenents//////
 const getAllBookingsController = async (req, res) => {
-  const { userId } = req.body;
+  const userId = req.userId;
   try {
-    const getAllBookings = await bookingSchema.find();
-    const updatedBookings = getAllBookings.filter(
-      (booking) => booking.userID.toString() === userId
-    );
+    // Directly query the database for bookings where userID matches the current user's ID
+    const updatedBookings = await bookingSchema.find({ userID: userId });
+    
     return res.status(200).send({
       success: true,
       data: updatedBookings,

@@ -113,20 +113,20 @@ const AllPropertiesCards = ({ loggedIn }) => {
                      <Card.Body>
                         <Card.Title><img src={`http://localhost:8001${property.propertyImage[0].path}`} alt='photos' /></Card.Title>
                         <Card.Text>
-                           <p style={{ fontWeight: 600 }} className='my-1'>Location:</p> {property.propertyAddress} <br />
-                           <p style={{ fontWeight: 600 }} className='my-1'>Property Type:</p> {property.propertyType} <br />
-                           <p style={{ fontWeight: 600 }} className='my-1'>Ad Type:</p> {property.propertyAdType} <br />
-                           {!loggedIn ? (
-                              <>
-                              </>
-                           ) : (
-                              <>
-                                 <p style={{ fontWeight: 600 }} className='my-1'>Owner Contact:</p> {property.ownerContact} <br />
-                                 <p style={{ fontWeight: 600 }} className='my-1'>Availabilty:</p> {property.isAvailable} <br />
-                                 <p style={{ fontWeight: 600 }} className='my-1'>Property Amount:</p> Rs.{property.propertyAmt}<br />
-                              </>
-                           )}
-                        </Card.Text>
+  <span style={{ fontWeight: 600 }} className='my-1'>Location:</span> {property.propertyAddress} <br />
+  <span style={{ fontWeight: 600 }} className='my-1'>Property Type:</span> {property.propertyType} <br />
+  <span style={{ fontWeight: 600 }} className='my-1'>Ad Type:</span> {property.propertyAdType} <br />
+  {!loggedIn ? (
+    <>
+    </>
+  ) : (
+    <>
+      <span style={{ fontWeight: 600 }} className='my-1'>Owner Contact:</span> {property.ownerContact} <br />
+      <span style={{ fontWeight: 600 }} className='my-1'>Availabilty:</span> {property.isAvailable} <br />
+      <span style={{ fontWeight: 600 }} className='my-1'>Property Amount:</span> Rs.{property.propertyAmt}<br />
+    </>
+  )}
+</Card.Text>
                         {
                            !loggedIn ? (<>
                               <p style={{ fontSize: 12, color: 'orange', marginTop: 20 }}>For more details, click on get info</p>
