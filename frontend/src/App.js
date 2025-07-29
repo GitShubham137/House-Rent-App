@@ -57,7 +57,7 @@ const [userLoggedIn, setUserLoggedIn] = useState(false)
           </div>
           <footer className="bg-light text-center text-lg-start">
             <div className="text-center p-3">
-              © {date} Copyright: RentEase
+              © {date} Copyright: HouseRent
             </div>
           </footer>
         </Router>

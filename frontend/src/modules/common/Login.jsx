@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import { Container, Nav } from 'react-bootstrap';
@@ -13,13 +13,13 @@ import axios from 'axios';
 import { message } from 'antd';
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [data, setData] = useState({
     name: "",
     email: "",
     password: "",
     type: ""
-  })
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,9 +59,9 @@ const Login = () => {
                 navigate("/login");
                 break;
             }
-            setTimeout(()=>{
-              window.location.reload()
-            },1000)
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
           } else {
             message.error(res.data.message);
           }
@@ -69,6 +69,8 @@ const Login = () => {
         .catch((err) => {
           if (err.response && err.response.status === 401) {
             alert("User doesn't exist");
+          } else {
+            message.error("An error occurred. Please try again.");
           }
           navigate("/login");
         });
@@ -79,7 +81,9 @@ const Login = () => {
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container fluid>
-          <Navbar.Brand><h2>RentEase</h2></Navbar.Brand>
+          <Navbar.Brand style={{ color: '#0056b3', fontWeight: 'bold', fontSize: '1.8rem' }}>
+            <h2>HouseRent</h2>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
@@ -89,17 +93,15 @@ const Login = () => {
             >
             </Nav>
             <Nav>
-              <Link to={'/'}>Home</Link>
-              <Link to={'/login'}>Login</Link>
-              <Link to={'/register'}>Register</Link>
+              <Link to={'/'} style={{ color: '#28a745', marginRight: '15px', textDecoration: 'none', fontSize: '1.1rem' }}>Home</Link>
+              <Link to={'/login'} style={{ color: '#007bff', marginRight: '15px', textDecoration: 'none', fontSize: '1.1rem' }}>Login</Link>
+              <Link to={'/register'} style={{ color: '#6c757d', textDecoration: 'none', fontSize: '1.1rem' }}>Register</Link>
             </Nav>
-
           </Navbar.Collapse>
         </Container>
       </Navbar>
 
-
-      <Container component="main" >
+      <Container component="main" maxWidth="xs">
         <Box
           sx={{
             marginTop: 8,
@@ -107,18 +109,22 @@ const Login = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            padding: 3,
+            borderRadius: '8px',
+            boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.1)',
           }}
         >
-          <Avatar sx={{ bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: '#007bff' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" sx={{ color: '#343a40', mb: 2 }}>
             Sign In
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
 
             <TextField
               margin="normal"
+              required
               fullWidth
               id="email"
               label="Email Address"
@@ -127,9 +133,11 @@ const Login = () => {
               onChange={handleChange}
               autoComplete="email"
               autoFocus
+              variant="outlined"
             />
             <TextField
               margin="normal"
+              required
               fullWidth
               name="password"
               value={data.password}
@@ -138,25 +146,38 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              variant="outlined"
             />
-            <Box mt={2}>
+            <Box mt={3}>
               <Button
                 type="submit"
+                fullWidth
                 variant="contained"
-                style={{ width: '200px' }}
+                sx={{
+                  mt: 1,
+                  mb: 2,
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: '#0056b3',
+                  },
+                  fontSize: '1.1rem',
+                  padding: '10px 0',
+                }}
               >
-                Sign Up
+                Sign In
               </Button>
             </Box>
             <Grid container>
-              <Grid item>forgot password?
-                <Link style={{ color: "red" }} to={'/forgotpassword'} variant="body2">
-                  {" Click here"}
+              <Grid item xs sx={{ mb: 1 }}>
+                Forgot password?{" "}
+                <Link style={{ color: "#dc3545", textDecoration: 'none' }} to={'/forgotpassword'} variant="body2">
+                  Click here
                 </Link>
               </Grid>
-              <Grid item>Have an account?
-                <Link style={{ color: "blue" }} to={'/register'} variant="body2">
-                  {" Sign Up"}
+              <Grid item>Create an account?{" "}
+                <Link style={{ color: "#28a745", textDecoration: 'none' }} to={'/register'} variant="body2">
+                  Sign Up
                 </Link>
               </Grid>
             </Grid>
@@ -164,7 +185,7 @@ const Login = () => {
         </Box>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
